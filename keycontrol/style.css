@@ -137,5 +137,47 @@ header {
 }
 
 body.index{
-	margin-top:2.5em;
+	margin-top:5em;
+}
+
+
+@media screen and (max-width: 950px){
+	table{
+		width:95%;
+	}
+	table a{
+		font-size:0.8em;
+		display:block;
+	}
+}
+
+@media screen and (max-width: 770px){
+
+	.sub-menu a{
+		font-size:0.6em!important;
+	}
+
+}
+
+@media screen and (max-width: 650px){
+nav ul li{
+	width:38%;
+	margin:0;
+}
+
+body.index{
+	margin-top:10em;
+}
+
+
+}
+
+@media screen and (max-width: 570px){
+
+	table .date_start, table .date_used{
+		visibility: hidden;
+		display:none;
+	}
+
+
 }

@@ -263,11 +263,11 @@ echo "index.php?";
 	<thead>
 <tr>
 <td>ID </td>
-<td>Key</td>
-<td>Created at</td>
-<td>Used at</td>
-<td>Is active?</td>
-<td>Actions</td>
+<td class="key">Key</td>
+<td class="date_start">Created at</td>
+<td class="date_used">Used at</td>
+<td class="status">Is active?</td>
+<td class="actions">Actions</td>
 
 
 
@@ -283,36 +283,36 @@ if($result = $mysqli->query($query)){
     	echo "<tr class='used'>";
     	
     }
-    	        echo "<td>";
+    	        echo "<td class='id'>";
         echo $row['id'];
                 echo "</td>";
-    	echo "<td><b>";
+    	echo "<td class='key'><b>";
         echo $row['key'];
         echo "</b></td>";
 
-        echo "<td>";
+        echo "<td class='date_start'>";
         echo date("d/m/Y H:i:s", strtotime($row['f_start']));
                 echo "</td>";
                 if($row['f_used'] == "0000-00-00 00:00:00"){
-                echo "<td>No used yet</td>";
+                echo "<td class='date_used'>No used yet</td>";
             }else{
-               echo "<td>";
+               echo "<td class='date_used'>";
         echo date("d/m/Y H:i:s", strtotime($row['f_used']));
                 echo "</td>";
                 };
 
                 if($row['active'] == 1){
 
-                echo "<td>Active</td>";
+                echo "<td class='status'>Active</td>";
                 } else {
-                echo "<td>Used</td>";
+                echo "<td class='status'>Used</td>";
                 }
 echo "<td>";
 if($row['active'] == 1){
-		echo "<a href='index.php?do=disallow&id=".$row['id']."'> disallow for use</a> - ";
+		echo "<a href='index.php?do=disallow&id=".$row['id']."'> disallow for use</a> ";
 
 }else{
-	echo "<a href='index.php?do=renew&id=".$row['id']."'> renew for use</a> - ";
+	echo "<a href='index.php?do=renew&id=".$row['id']."'> renew for use</a>";
 }
 
                 echo "<a href='index.php?do=delete&id=".$row['id']."'>delete key</a></tr>";
