@@ -2,6 +2,7 @@ body{
 	background: #e31;
 	margin:0;
 	padding:0;
+	font-size:16px;
 }
 
 nav{
@@ -13,19 +14,62 @@ nav ul {
 	text-align:center;
 	list-style: none;
 	background: #333;
-	border-bottom: 5px solid rgb(94, 26, 0);
+	border-bottom: 3px solid rgb(36,36,36);
 	padding: 0;
 	margin:0;
 }
 
-nav ul li {
+ul li {
 	display: inline-block;
 	padding: 0.1em 0.4em;
 	margin: 0 1em;
 }
 
-nav ul li a{
+ul li a{
 	color:white;
 	line-height: 40px;
 	text-decoration:none;
 }
+
+ul.sub-menu{
+	width:100%;
+	text-align: center;
+	background:#555;
+	border-bottom: 5px solid rgb(94, 26, 0);;
+	padding:0;
+	margin:0;
+}
+
+.sub-menu li a{
+	line-height: 25px;
+	font-size:0.8em;
+}
+
+table {
+color: white;
+margin: 0 auto;
+}
+
+table a{
+	color:white;
+}
+
+
+h2{
+	text-align:center;
+	color:white;
+}
+
+ul li h1{
+	padding:0;
+	margin:0;
+	color:white;
+
+}
+ul li{
+	transition: all 0.2s ease-in-out;
+}
+ul li:hover{
+	background:#111;
+}
+

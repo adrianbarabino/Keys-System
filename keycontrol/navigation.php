@@ -1,6 +1,9 @@
 <nav>
 	<ul>
-
+		
+		<li>
+			<h1>Keys System</h1>
+		</li>
 
 		<li>
 			<a href="index.php?do=generatekey">Generate Key</a>

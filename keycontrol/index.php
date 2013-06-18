@@ -45,9 +45,9 @@ $mysqli->query("INSERT INTO  `keys` (`id`, `key`, `f_start`, `f_used`, `active`)
 	 '',
 	  '1');");
 
-echo "<h1>The key: ";
+echo "<h2>The key: ";
 echo $random_final;
-echo " is now active! </h1>";
+echo " is now active! </h2>";
 
 }elseif($do == "newkey"){
 	?>
@@ -67,14 +67,44 @@ if($_GET['id']){
 
 $id = $_GET['id'];
 
-$consulta = "SELECT * FROM keys where id = ".$id;
+$query = "SELECT * FROM `keys` where id = ".$id;
 
-if($result = $mysqli->query($consulta)){
+if($result = $mysqli->query($query)){
 	while ($row = $result->fetch_array()) {
 $key = $row['key'];
-echo "The key ".$key." was deleted now.";
+echo "<h2>The key ".$key." was used now.</h2>";
+$f_used = date("Y-m-d H:i:s");
+
+
+
+	$mysqli->query("UPDATE `keys` SET  `f_used` =  '".$f_used."', `active` =  '0' WHERE  `id` = ".$id." LIMIT 1");
 }
 }
+}else{
+	echo "<h2>The key doesn't exist!</h2>";
+}
+}elseif($do == "renew"){
+
+
+if($_GET['id']){
+
+$id = $_GET['id'];
+
+$query = "SELECT * FROM `keys` where id = ".$id;
+
+if($result = $mysqli->query($query)){
+	while ($row = $result->fetch_array()) {
+$key = $row['key'];
+echo "<h2>The key ".$key." was active now.</h2>";
+$f_used = date("Y-m-d H:i:s");
+
+
+
+	$mysqli->query("UPDATE `keys` SET  `f_used` =  '', `active` =  '1' WHERE  `id` = ".$id." LIMIT 1");
+}
+}
+}else{
+	echo "<h2>The key doesn't exist!</h2>";
 }
 
 }elseif($do == "delete"){
@@ -83,42 +113,40 @@ if($_GET['id']){
 
 $id = $_GET['id'];
 
-$consulta = "SELECT * FROM keys where id = ".$id;
+$query = "SELECT * FROM `keys` where id = ".$id;
 
-if($result = $mysqli->query($consulta)){
+if($result = $mysqli->query($query)){
 	while ($row = $result->fetch_array()) {
 $key = $row['key'];
-echo "The key ".$key." was deleted now.";
+echo "<h2>The key ".$key." was deleted now.</h2>";
 
 
 }
 }
-	$mysqli->query("DELETE from keys where id = ".$id);
+	$mysqli->query("DELETE from `keys` where `id` = ".$id);
 
 
 
+}else{
+	echo "<h2>The key doesn't exist!</h2>";
 }
 }
 
 }else{
 
 
-$f_used = date("Y-m-d H:i:s");
 
-
-
-	$mysqli->query("UPDATE keys set active='0' f_used='".$f_used."' where id = ".$id);
 
 
 
 
 if($_GET['order'] OR $_GET['where']){
-	$consulta = "SELECT * FROM keys ";
+	$query = "SELECT * FROM `keys` ";
 
 if($_GET['where']){
 	$where = $_GET['where'];
 	$where2 = $_GET['where2'];
-	$consulta = $consulta."WHERE `".$where."` =".$where2." ";
+	$query = $query."WHERE `".$where."` =".$where2." ";
 	
 
 }
@@ -131,18 +159,17 @@ if($_GET['order']){
 	$order2 = "asc";
 }
 
-	$consulta = $consulta."ORDER BY  `keys`.`".$order."` ".$order2." ";
+	$query = $query."ORDER BY  `keys`.`".$order."` ".$order2." ";
 }
 }else{
 	$_GET['order'] = "id";
-$consulta = $consulta."SELECT * FROM keys ORDER BY  `keys`.`key` ASC ";
+$query = $query."SELECT * FROM `keys` ORDER BY  `keys`.`key` ASC ";
 }
 
 ?>
 
-<br>
-
-<a href="
+<ul class="sub-menu">
+<li><a href="
 <?php
 echo "index.php?";
 
@@ -159,7 +186,7 @@ echo "index.php?";
 	
 
 ?>
-">Show only actives </a> - <a href="
+">Show only actives </a> </li><li><a href="
 <?php
 echo "index.php?";
 
@@ -175,7 +202,7 @@ echo "index.php?";
 	
 
 ?>
-"> Show only used keys</a> - <a href="
+"> Show only used keys</a> </li><li><a href="
 <?php
 echo "index.php?";
 
@@ -191,7 +218,7 @@ echo "index.php?";
 		echo "where2=".$_GET['where2']."&";
 	}
 
-?>"> Order by Used Date </a> - <a href="
+?>"> Order by Used Date </a> </li><li><a href="
 <?php
 echo "index.php?";
 
@@ -207,7 +234,7 @@ echo "index.php?";
 		echo "where2=".$_GET['where2']."&";
 	}
 
-?>"> Order by Created Date </a> - <a href="
+?>"> Order by Created Date </a> </li><li><a href="
 <?php
 echo "index.php?";
 
@@ -229,7 +256,7 @@ echo "index.php?";
 	}
 	
 
-?>"> Toggle ASC / DESC </a> - 
+?>"> Toggle ASC / DESC </a></li> </ul>
 <table>
 <tr>
 <td>ID </td>
@@ -242,9 +269,8 @@ echo "index.php?";
 
 </tr>
 
-
 <?php
-if($result = $mysqli->query($consulta)){
+if($result = $mysqli->query($query)){
     /* fetch associative array */
     while ($row = $result->fetch_array()) {
     	echo "<tr>";
@@ -258,12 +284,12 @@ if($result = $mysqli->query($consulta)){
         echo "<td>";
         echo date("d/m/Y H:i:s", strtotime($row['f_start']));
                 echo "</td>";
-                if($row['f_used']){
+                if($row['f_used'] == "0000-00-00 00:00:00"){
+                echo "<td>No used yet</td>";
+            }else{
                echo "<td>";
         echo date("d/m/Y H:i:s", strtotime($row['f_used']));
                 echo "</td>";
-                } else {
-                	echo "<td>No used yet</td>";
                 };
 
                 if($row['active'] == 1){
@@ -274,13 +300,13 @@ if($result = $mysqli->query($consulta)){
                 }
 echo "<td>";
 if($row['active'] == 1){
-		echo "<a href='disallow.php?id=".$row['id']."'> disallow for use</a> - ";
+		echo "<a href='index.php?do=disallow&id=".$row['id']."'> disallow for use</a> - ";
 
 }else{
-	echo "<a href='renew.php?id=".$row['id']."'> renew for use</a> - ";
+	echo "<a href='index.php?do=renew&id=".$row['id']."'> renew for use</a> - ";
 }
 
-                echo "<a href='delete.php?id=".$row['id']."'>delete key</a></tr>";
+                echo "<a href='index.php?do=delete&id=".$row['id']."'>delete key</a></tr>";
 
     }
 
