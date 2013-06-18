@@ -155,7 +155,7 @@ if($_GET['step'] == 1){
 	<p>
 		All work is maked by Adrian Barabino for learning and personal/comercial uses.
 		<br>The code has been released with the Apache License 2.0, PLEASE read it.
-		<br>Before to do click on "Lets go to install" you first need edit the file connection.php!!
+		<br>Before to do click on "Lets go to install" you first need rename the <b>connection.php.sample</b> to <b>connection.php</b> and edit the file!!
 	</p>
 
 	<h3>Installing</h3>
