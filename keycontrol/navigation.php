@@ -1,0 +1,18 @@
+<nav>
+	<ul>
+
+
+		<li>
+			<a href="index.php?do=generatekey">Generate Key</a>
+		</li>
+		<li>
+			<a href="index.php"> Show / Delete all keys </a>
+		</li>
+		<li>
+			<a href="index.php"> Show all keys </a>
+		</li>
+
+
+
+</ul>
+</nav>
