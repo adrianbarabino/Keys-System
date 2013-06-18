@@ -13,5 +13,4 @@ For use this script you need to rename connection.php.sample to connection.php a
 
 <h2>To-do </h2>
 
-* Add Installer
 * Add front end system 
