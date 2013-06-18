@@ -1,3 +1,10 @@
+<?php
+
+if(!$do){
+echo "<header>";
+}
+?>
+
 <nav>
 	<ul>
 		

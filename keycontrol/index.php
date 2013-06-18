@@ -8,9 +8,10 @@ require("connection.php");
 <head>
 	<meta charset="UTF-8">
 	<title>Key Control</title>
+	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700|Lobster' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body <?php if(!$do){ echo "class='index'"; }?>>
 <?php
 require("navigation.php");
 
@@ -257,23 +258,31 @@ echo "index.php?";
 	
 
 ?>"> Toggle ASC / DESC </a></li> </ul>
+</header>
 <table>
+	<thead>
 <tr>
 <td>ID </td>
 <td>Key</td>
 <td>Created at</td>
 <td>Used at</td>
-<td>is active?</td>
-<td>actions</td>
+<td>Is active?</td>
+<td>Actions</td>
+
 
 
 </tr>
-
+</thead><tbody>
 <?php
 if($result = $mysqli->query($query)){
     /* fetch associative array */
     while ($row = $result->fetch_array()) {
-    	echo "<tr>";
+    	if($row['active'] == 1){
+    	echo "<tr class='active'>";
+    }else{
+    	echo "<tr class='used'>";
+    	
+    }
     	        echo "<td>";
         echo $row['id'];
                 echo "</td>";
@@ -312,6 +321,7 @@ if($row['active'] == 1){
 
 }
 ?>
+</tbody>
 </table>
 <?php
     /* free result set */
@@ -322,6 +332,13 @@ $mysqli->close();
 }
 ?>
 
-	
+
+
+<footer>
+<span>
+	Keys System by <a href="http://adrianbarabino.github.io/" target="_blank">Adrian Barabino</a> - <a href="https://github.com/adrianbarabino/Keys-System" target="_blank">hosted in Github</a>
+</span>
+
+</footer>
 </body>
 </html>

@@ -3,6 +3,12 @@ body{
 	margin:0;
 	padding:0;
 	font-size:16px;
+	font-family: 'Lobster', cursive;
+
+}
+
+body > *{
+		transition: all 0.3s ease-in-out;
 }
 
 nav{
@@ -64,6 +70,8 @@ ul li h1{
 	padding:0;
 	margin:0;
 	color:white;
+	font-weight:400;
+	line-height:45px;
 
 }
 ul li{
@@ -73,3 +81,61 @@ ul li:hover{
 	background:#111;
 }
 
+
+h2, h3, table{
+	font-family: 'Arvo', serif;
+}
+
+
+
+
+table a{
+	text-decoration:none;
+	padding: 0.3em 0.4em;
+	line-height:1.2em;
+	margin:0.5em;
+	background:#333;
+	transition: all 0.2s ease-in-out;
+}
+table a:hover{
+	background:transparent;
+	text-shadow:0 0 15px rgb(180, 0, 0), -1px -1px 1px rgba(0, 0, 0, 0.33), 1px 1px 1px rgba(0, 0, 0, 0.37)
+}
+
+table tr{
+	height:2em;
+}
+
+table td{
+	padding: 1em;
+	padding-left:0;
+}
+
+table .used b{
+	text-decoration:line-through; 
+}
+
+footer{
+	width:70%;
+
+	text-align:right;
+	margin: 2em auto;
+	color:white;
+	font-size:0.8em;
+}
+
+footer a{
+	color:#dedede;
+	text-decoration: none;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+
+}
+
+body.index{
+	margin-top:2.5em;
+}
