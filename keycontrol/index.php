@@ -1,5 +1,6 @@
 <?php
 require("connection.php");
+require("verify.php");
 
 ?>
 
@@ -12,7 +13,14 @@ require("connection.php");
 	<link rel="stylesheet" href="style.css">
 </head>
 <body <?php if(!$do){ echo "class='index'"; }?>>
+
+
+
 <?php
+
+if($loginOK){
+
+
 require("navigation.php");
 
 $do = $_GET['do'];
@@ -330,13 +338,36 @@ if($row['active'] == 1){
 /* close connection */
 $mysqli->close();
 }
+}else{
+	?>
+<header>
+	<nav>
+		<ul>
+			<li>
+				<h1>Key System</h1>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+<h2>Restringed Access</h2>
+<h2>Please log-in or exit from here!!</h2>
+	<form action="process.php?action=login" method="post"> 
+      <input type ="text" placeholder="email" name="email" size=28 maxlength=100>
+      <br> 
+      <input type ="password" placeholder="password" name="password" size=28 maxlength=20>
+      <br>
+      <input type="submit" class="button" value="Log in">
+      </form>
+	<?php
+}
 ?>
 
 
 
 <footer>
 <span>
-	Keys System by <a href="http://adrianbarabino.github.io/" target="_blank">Adrian Barabino</a> - <a href="https://github.com/adrianbarabino/Keys-System" target="_blank">hosted in Github</a>
+	Keys System by <a href="http://adrianbarabino.github.io/" target="_blank">Adrian Barabino</a> - <a href="https://github.com/adrianbarabino/Keys-System" target="_blank">hosted in Github</a> <?php if($loginOK){ ?>- <a href="process.php?action=logout" class="exit">Exit<a><?php }; ?>
 </span>
 
 </footer>

@@ -181,3 +181,9 @@ body.index{
 
 
 }
+
+a.exit{
+	background:#333;
+	padding:0.2em 0.3em;
+	border-radius:0.2em;
+}

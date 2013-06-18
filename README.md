@@ -13,6 +13,5 @@ For use this script you need to rename connection.php.sample to connection.php a
 
 <h2>To-do </h2>
 
-
-* Add user login to the panel
+* Add Installer
 * Add front end system 
