@@ -187,3 +187,40 @@ a.exit{
 	padding:0.2em 0.3em;
 	border-radius:0.2em;
 }
+
+fieldset{
+	width: 100%;
+	margin: 0 auto;
+	max-width:500px;
+	color:white;
+}
+
+fieldset ol{
+	list-style: none;
+}
+
+fieldset input[type=submit]{
+	border: 1px solid #ccc;
+	width: 100%;
+	font-size: 1em;
+	padding: 0.2em;
+}
+
+#result{
+	text-align: center;
+	color:white;
+}
+
+#result a{
+	color:white;
+	text-decoration: none;
+	background: #333;
+	padding: 0.3em 0.4em;
+	border-radius: 0.2em;
+	transition: all 0.2s ease-in-out;
+}
+
+#result a:hover{
+	background: transparent;
+	color:#333;
+}
