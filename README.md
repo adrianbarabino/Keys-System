@@ -11,3 +11,8 @@ The code has been released with the Apache License 2.0, PLEASE read it.
 
 For use this script you need to rename connection.php.sample to connection.php and fill your database config on the file.
 
+<h2>To-do </h2>
+
+
+* Add user login to the panel
+* Add front end system 
