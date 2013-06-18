@@ -28,14 +28,7 @@ require("connection.php");
 $action = $_GET['action'];
 
 
-function remove_tags($message)
-{
-$message = str_replace("<","<",$message);
-$message = str_replace(">",">",$message);
-$message = str_replace("\'","'",$message);
-$message = str_replace('\"',"\"",$message);
-return $message;
-}
+
 
 
 if($action == "logout"){

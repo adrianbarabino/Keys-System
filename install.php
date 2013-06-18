@@ -1,5 +1,5 @@
 <?php
-	require("./keycontrol/connection.php");
+	require("keycontrol/connection.php");
 error_reporting("ALL");
 
 ?>
@@ -58,12 +58,12 @@ if($_POST['mail']){
 function run_query_batch($handle, $filename="")
 {
 
-global $db;
+global $mysqli;
 // --------------
 // Open SQL file.
 // --------------
 if (! ($fd = fopen($filename, "r")) ) {
-die("Failed to open $filename: " . $db->error() . "<br>");
+die("Failed to open $filename: " . $mysqli->error() . "<br>");
 }
 
 // --------------------------------------
@@ -93,7 +93,7 @@ $stmt = preg_replace("/;/", "", $stmt);
 // ----------------------
 // Execute the statement.
 // ----------------------
-if(!$result = $db->query($stmt, $handle)){
+if(!$result = $mysqli->query($stmt, $handle)){
 	die("Error in the query to the DB");
 }
 
@@ -112,8 +112,8 @@ $sql = "INSERT INTO users (name,password,email) VALUES (";
 			$sql .= ",'".md5(md5(remove_tags($_POST["pass"])))."'";
 			$sql .= ",'".remove_tags($_POST["mail"])."'";
 			$sql .= ")";
-			if(!$register_result = $db->query($sql)){
-				die("Error in the query to DB ". $db->error);
+			if(!$register_result = $mysqli->query($sql)){
+				die("Error in the query to DB ". $mysqli->error);
 				
 			}
 	?>

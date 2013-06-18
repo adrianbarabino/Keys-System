@@ -1,8 +1,16 @@
 <?php
-$mysqli = new mysqli("localhost", "user", "pwd", "pass");
+$mysqli = new mysqli("localhost", "user", "pwd", "dbname");
 if (mysqli_connect_errno()) {
-    printf("fallo al contectar con : %s\n", mysqli_connect_error());
+    printf("fail to connect with the DB : %s\n", mysqli_connect_error());
     exit();
 }
 
+function remove_tags($message)
+{
+$message = str_replace("<","<",$message);
+$message = str_replace(">",">",$message);
+$message = str_replace("\'","'",$message);
+$message = str_replace('\"',"\"",$message);
+return $message;
+}
 ?>
